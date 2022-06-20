@@ -9,19 +9,19 @@
     <link rel="stylesheet" href="../CSS/styles.css">
 </head>
 <body>
-    <div id=background style="background-image: url(/images/fundo.jpg); background-size: cover; height: 100vh; width: 100vw; position: relative; ">
+    <div style="background-image: url(/images/fundo.jpg); background-size: cover; height: 100vh; width: 100vw; position: relative; ">
         <div class="row h-100 w-100">
             <div class="col-12 d-flex align-items-center flex-column justify-content-center ">
                 <div class="d-flex flex-column bg-black bg-opacity-50 h-auto pt-5 pb-5 rounded shadow-lg w-50 justify-content-center" >
-                    <p class="h1 text-white m-5 align-self-center">RECADOS</p>
-                    <form class="col-12 d-flex flex-column justify-content-center align-items-center">
-                        <label for="username"></label>
-                        <input class="mb-3 w-75 rounded" type="text" name="username" id="inputUsername" placeholder="Username">
-                        <label for="password"></label>
-                        <input class="mb-3 w-75 rounded" type="password" name="password" id="inputPassword" placeholder="Password">
-                        <button class="mb-3 btn btn-success w-75 rounded">LOGAR</button>
-                    </form>
-                    <span class="text-white align-self-end p-4">Não tem conta? <a href="../js/cadastro.html" class="btn btn-info text-black text-decoration-none">CADASTRE-SE </a> </span> 
+                    <p class="h1 text-white m-5 align-self-center">MESSAGES</p>
+                    <div class="col-12 d-flex flex-column justify-content-center align-items-center gap-2">
+                        <label for="inputUsernameLogin"></label>
+                        <input class="form-control mb-3 w-75 p-2 rounded bg-white bg-opacity-75" type="text" name="inputUsernameLogin" id="inputUsernameLogin" placeholder="Username">
+                        <label for="inputPasswordLogin"></label>
+                        <input class="form-control mb-3 w-75 p-2 rounded bg-white bg-opacity-75" type="password" autocomplete="on" name="inputPasswordLogin" id="inputPasswordLogin" placeholder="Password">
+                        <button type="submit" id="buttonSignIn" class="mb-3 btn btn-success w-75 rounded">SIGN IN</button>
+                    </div>
+                    <span class="text-white align-self-end p-4">Don't have account? <a href="../js/cadastro.html" class="btn btn-info text-black text-decoration-none">SIGN UP</a> </span> 
                 </div>
             </div>
         </div>
@@ -29,5 +29,6 @@
        
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+    <script src="./index.js" ></script>
 </body>
 </html>
