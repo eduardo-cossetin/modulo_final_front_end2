@@ -65,6 +65,7 @@ function addMessage(recado: any){
 
 function populaLista(){
     const usersMessages: Array<any> = JSON.parse(localStorage.getItem("usersMessages") || "[]")
+    usersMessages.filter((element) => element.userName === 2)
     limpaTabela()
     usersMessages.forEach((element) => {
         const tr: HTMLElement = document.createElement("tr") 
