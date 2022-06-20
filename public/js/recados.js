@@ -18,12 +18,17 @@ if (userName === "") {
     window.location.href = "./index.html";
 }
 buttonSaveMessage.addEventListener("click", () => {
-    const capturarInputs = getInputsMessage();
-    const recado = message(capturarInputs);
-    addMessage(recado);
-    populaLista();
-    inputDescription.value = "";
-    inputDetail.value = "";
+    if (inputDescription.value === "" || inputDetail.value === "") {
+        alert("É necessário preencher os campos!");
+    }
+    else {
+        const capturarInputs = getInputsMessage();
+        const recado = message(capturarInputs);
+        addMessage(recado);
+        populaLista();
+        inputDescription.value = "";
+        inputDetail.value = "";
+    }
 });
 function getInputsMessage() {
     return {

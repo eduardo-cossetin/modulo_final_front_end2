@@ -6,7 +6,10 @@ const buttonSignUp = document.querySelector("#buttonSignUp");
 const users = JSON.parse(localStorage.getItem("users") || "[]");
 buttonSignUp.addEventListener("click", () => {
     const user = getUserInputs();
-    if (userExist(user)) {
+    if (inputPassword.value !== inputRepeatPassword.value) {
+        alert("As senhas não são iguais");
+    }
+    else if (userExist(user)) {
         alert("Usuário já existe!");
     }
     else {

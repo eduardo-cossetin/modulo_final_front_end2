@@ -11,34 +11,31 @@
 
 <body>
     <div style="background-image: url(/images/fundo.jpg); background-position: center ; background-size: cover; height: 100vh; width: 100vw; position: fixed; ">
-        <div class="container" >
+        <div class="container align-items-center justify-content-center"  >
         <div class="row">
-            <div class="col-12 h1 m-5">Meus Recados</div>
-        </div class="d-flex align-items-end h-100 w-100"><div>
-            <button id="buttonLogOut" class="btn btn-secondary ">SAIR</button>
+            <div class="col-12 h1 ">Meus Recados</div>
         </div>
-        
-        <div id="inputsEditar" class="container row m-5 gx-0"  >
+        <button id="buttonLogOut" class="btn btn-secondary ">SAIR</button>
+        <div id="inputsEditar" class="row m-5 gx-0 " >
                 <div class="col-3">
                     <input style="display: none;" required class="form-control text-white bg-black " type="text" name="inputDescription" id="inputDescriptionEdit" placeholder="Descrição">
                 </div>
                 <div class="col">
                     <input style="display: none;" required class="form-control ms-3 text-white bg-black" type="text" name="inputDetail" id="inputDetailEdit" placeholder="Detalhamento">
                 </div>
-                <div class="col-auto">
+                <div class="col-auto ">
                     <button style="display: none;" type="submit" id="buttonEdit" class="ms-3 form-control btn btn-success">EDITAR</button>
                 </div>
-        <div class="row gx-0" >
-            
-            </div>
+        </div>
+        <div class="d-flex row gx-0" >  
             <div class="col-3">
-                <input required class="form-control" type="text" name="inputDescription" id="inputDescription" placeholder="Descrição">
+                <input required class="form-control ms-5" type="text" name="inputDescription" id="inputDescription" placeholder="Descrição">
             </div>
             <div class="col">
-                <input required class="form-control ms-3" type="text" name="inputDetail" id="inputDetail" placeholder="Detalhamento">
+                <input required class="form-control ms-5" type="text" name="inputDetail" id="inputDetail" placeholder="Detalhamento">
             </div>
             <div class="col-auto">
-                <button type="submit" id="buttonSaveMessage" class="ms-3 form-control btn btn-info">SALVAR</button>
+                <button type="submit" id="buttonSaveMessage" class="ms-5 form-control btn btn-info">SALVAR</button>
             </div>
             <div class="row mx-5 bg-black bg-opacity-75 ">
                 <table id="table" class="table table-hover table-dark mt-5">
