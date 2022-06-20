@@ -12,6 +12,7 @@ const table = document.querySelector("#table");
 const tr = document.querySelector("#tr");
 const inputsEditar = document.querySelector("#inputsEditar");
 const usersMessages = JSON.parse(localStorage.getItem("usersMessages") || "[]");
+const logadoMessage = usersMessages.filter((element) => element.username === userName);
 populaLista();
 if (userName === "") {
     alert("Usuário não logado");
@@ -46,7 +47,7 @@ function message(capturarInputs) {
 }
 function nextId() {
     let max = 0;
-    usersMessages.forEach((item) => {
+    logadoMessage.forEach((item) => {
         if (item.id > max) {
             max = item.id;
         }
@@ -54,14 +55,12 @@ function nextId() {
     return max + 1;
 }
 function addMessage(recado) {
-    usersMessages.push(recado);
+    logadoMessage.push(recado);
     localStorage.setItem("usersMessages", JSON.stringify(usersMessages));
 }
 function populaLista() {
-    const usersMessages = JSON.parse(localStorage.getItem("usersMessages") || "[]");
-    usersMessages.filter((element) => element.userName === 2);
     limpaTabela();
-    usersMessages.forEach((element) => {
+    logadoMessage.forEach((element) => {
         const tr = document.createElement("tr");
         table.innerHTML += `<th scope="row">${element.id}
         </th><td>${element.description}</td><td>${element.detail}
@@ -77,9 +76,9 @@ function limpaTabela() {
     linhas.forEach((linha) => linha.parentNode?.removeChild(linha));
 }
 function deleteMessage(id) {
-    const index = usersMessages.findIndex((item) => item.id == id);
-    usersMessages.splice(index, 1);
-    localStorage.setItem("usersMessages", JSON.stringify(usersMessages));
+    const index = logadoMessage.findIndex((item) => item.id == id);
+    logadoMessage.splice(index, 1);
+    localStorage.setItem("usersMessages", JSON.stringify(logadoMessage));
     populaLista();
 }
 function editMessage(id) {
@@ -89,7 +88,7 @@ function editMessage(id) {
     inputDescription.style.display = "none";
     inputDetail.style.display = "none";
     buttonSaveMessage.style.display = "none";
-    const indexEdit = usersMessages.findIndex((item) => item.id == id);
+    const indexEdit = logadoMessage.findIndex((item) => item.id == id);
     buttonEdit.addEventListener("click", () => {
         populaLista();
         excluirRecado();
@@ -104,8 +103,8 @@ function editMessage(id) {
         buttonSaveMessage.style.display = "block";
     });
     function excluirRecado() {
-        usersMessages.splice(indexEdit, 1);
-        localStorage.setItem("usersMessages", JSON.stringify(usersMessages));
+        logadoMessage.splice(indexEdit, 1);
+        localStorage.setItem("usersMessages", JSON.stringify(logadoMessage));
     }
     function adicionarRecadoEdit() {
         const inputsEdits = getInputsEdit();
@@ -115,8 +114,8 @@ function editMessage(id) {
             description: inputsEdits.description,
             detail: inputsEdits.detail
         };
-        usersMessages.splice(indexEdit, 0, recado);
-        localStorage.setItem("usersMessages", JSON.stringify(usersMessages));
+        logadoMessage.splice(indexEdit, 0, recado);
+        localStorage.setItem("usersMessages", JSON.stringify(logadoMessage));
         populaLista();
     }
 }

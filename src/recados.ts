@@ -10,8 +10,9 @@ const buttonLogOut = document.querySelector("#buttonLogOut") as HTMLButtonElemen
 const table = document.querySelector("#table") as HTMLTableElement
 const tr = document.querySelector("#tr") as HTMLElement
 const inputsEditar = document.querySelector("#inputsEditar") as HTMLDivElement
-const usersMessages: Array<any> = JSON.parse(localStorage.getItem("usersMessages") || "[]")
 
+const usersMessages: Array<any> = JSON.parse(localStorage.getItem("usersMessages") || "[]")
+const logadoMessage =  usersMessages.filter((element) => element.username === userName)
 populaLista()
 
 if(userName === ""){
@@ -50,7 +51,7 @@ function message (capturarInputs: any){
 
 function nextId (){    
     let max = 0;
-    usersMessages.forEach((item) => {
+    logadoMessage.forEach((item) => {
     if (item.id > max) {
       max = item.id;
     }
@@ -59,15 +60,13 @@ function nextId (){
 }
 
 function addMessage(recado: any){
-    usersMessages.push(recado)
+    logadoMessage.push(recado)
     localStorage.setItem("usersMessages", JSON.stringify(usersMessages))
 }
 
 function populaLista(){
-    const usersMessages: Array<any> = JSON.parse(localStorage.getItem("usersMessages") || "[]")
-    usersMessages.filter((element) => element.userName === 2)
     limpaTabela()
-    usersMessages.forEach((element) => {
+    logadoMessage.forEach((element) => {
         const tr: HTMLElement = document.createElement("tr") 
         table.innerHTML+= `<th scope="row">${element.id}
         </th><td>${element.description}</td><td>${element.detail}
@@ -86,9 +85,9 @@ function limpaTabela(){
 }
 
 function deleteMessage(id: number){
-    const index = usersMessages.findIndex((item) => item.id == id);  
-    usersMessages.splice(index, 1); 
-    localStorage.setItem("usersMessages", JSON.stringify(usersMessages));
+    const index = logadoMessage.findIndex((item) => item.id == id);  
+    logadoMessage.splice(index, 1); 
+    localStorage.setItem("usersMessages", JSON.stringify(logadoMessage));
     populaLista();
 }   
 
@@ -99,7 +98,7 @@ function editMessage(id: number){
     inputDescription.style.display = "none" 
     inputDetail.style.display = "none" 
     buttonSaveMessage.style.display = "none" 
-    const indexEdit: number = usersMessages.findIndex((item) => item.id == id);    
+    const indexEdit: number = logadoMessage.findIndex((item) => item.id == id);    
     buttonEdit.addEventListener("click", () => {   
         populaLista()
         excluirRecado ()
@@ -115,8 +114,8 @@ function editMessage(id: number){
     })      
 
     function excluirRecado(){    
-        usersMessages.splice(indexEdit, 1)      
-        localStorage.setItem("usersMessages", JSON.stringify(usersMessages));
+        logadoMessage.splice(indexEdit, 1)      
+        localStorage.setItem("usersMessages", JSON.stringify(logadoMessage));
     }
 
     function adicionarRecadoEdit(){
@@ -127,8 +126,8 @@ function editMessage(id: number){
             description: inputsEdits.description,
             detail: inputsEdits.detail
         } 
-        usersMessages.splice(indexEdit, 0, recado)
-        localStorage.setItem("usersMessages", JSON.stringify(usersMessages));
+        logadoMessage.splice(indexEdit, 0, recado)
+        localStorage.setItem("usersMessages", JSON.stringify(logadoMessage));
         populaLista()   
     }
 }
