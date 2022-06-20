@@ -9,28 +9,7 @@
     <link rel="stylesheet" href="../CSS/styles.css">
 </head>
 <body>
-    <div style="background-image: url(/images/fundo.jpg); background-size: cover; height: 100vh; width: 100vw; position: relative; ">
-       
-        <div class="ms-5">
-            <button type="button" class="btn btn-dark  mt-2 ml-2" data-toggle="modal" data-target="#meuModal">SOBRE</button>
-            <div id="meuModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Sobre esta aplicação</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <p>Essa aplicação foi feita para a avaliação final do módulo de front-end 2 
-                        do programa Starter da GrowDev .</p>
-                </div>
-                <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">OK</button>
-                </div>
-            </div>
-            </div>
-        </div>
-       
+    <div style="background-image: url(/images/fundo.jpg); background-size: cover; height: 100vh; width: 100vw; position: fixed; ">
         <div class="row h-100 w-100">
             <div class="col-12 d-flex align-items-center flex-column justify-content-center ">
                 <div class="d-flex flex-column bg-black bg-opacity-50 h-auto pt-5 pb-5 rounded shadow-lg w-50 justify-content-center" >
@@ -46,9 +25,30 @@
                     <div id="alertIncorreto" class="alert alert-danger" role="alert" style="display: none">
                         Usuário não cadastrado ou senha incorreta!
                     </div> 
-                    </div>                
-                </div>               
-            </div>      
+                </div>     
+                <div class="ms-5">
+                <button type="button" class="align-self-end btn btn-dark mt-2 ml-2" data-toggle="modal" data-target="#meuModal">SOBRE</button>
+                <div id="meuModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Sobre esta aplicação</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Essa aplicação foi feita para a avaliação final do módulo de front-end 2 
+                            do programa Starter da GrowDev .</p>
+                    </div>
+                    <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">OK</button>
+                    </div>
+                    </div>
+                </div>
+                </div>           
+            </div>   
+            
+            </div>        
+                     
         </div>
     </div>
                 
