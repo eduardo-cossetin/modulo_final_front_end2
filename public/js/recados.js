@@ -8,7 +8,6 @@ const buttonSaveMessage = document.querySelector("#buttonSaveMessage");
 const buttonEdit = document.querySelector("#buttonEdit");
 const buttonDelete = document.querySelector("#buttonDelete");
 const buttonLogOut = document.querySelector("#buttonLogOut");
-const tbody = document.querySelector("#tbody");
 const table = document.querySelector("#table");
 const tr = document.querySelector("#tr");
 const inputsEditar = document.querySelector("#inputsEditar");

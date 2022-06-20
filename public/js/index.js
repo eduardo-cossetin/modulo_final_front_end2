@@ -2,16 +2,19 @@
 const inputUsernameLogin = document.querySelector("#inputUsernameLogin");
 const inputPasswordLogin = document.querySelector("#inputPasswordLogin");
 const buttonSignIn = document.querySelector("#buttonSignIn");
+const alertIncorreto = document.querySelector("#alertIncorreto");
 buttonSignIn.addEventListener("click", () => {
     const catchValues = getInputsValues();
-    if (sameUser(catchValues)) {
-        alert("Usuário cadastrado");
+    if (inputUsernameLogin.value === "" || inputPasswordLogin.value === "") {
+        alertIncorreto.style.display = "block";
+    }
+    else if (sameUser(catchValues)) {
         window.location.href = "./recados.html";
         const userLogIn = catchValues.inputUsernameLoginValue;
         localStorage.setItem("userLogIn", userLogIn);
     }
     else {
-        alert("Usuário não cadastrado ou senha incorreta!");
+        alertIncorreto.style.display = "block";
     }
     inputUsernameLogin.value = "";
 });

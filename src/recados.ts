@@ -7,11 +7,9 @@ const buttonSaveMessage = document.querySelector("#buttonSaveMessage") as HTMLBu
 const buttonEdit = document.querySelector("#buttonEdit") as HTMLButtonElement
 const buttonDelete = document.querySelector("#buttonDelete") as HTMLButtonElement
 const buttonLogOut = document.querySelector("#buttonLogOut") as HTMLButtonElement
-const tbody = document.querySelector("#tbody") as HTMLTableElement
 const table = document.querySelector("#table") as HTMLTableElement
 const tr = document.querySelector("#tr") as HTMLElement
 const inputsEditar = document.querySelector("#inputsEditar") as HTMLDivElement
-
 const usersMessages: Array<any> = JSON.parse(localStorage.getItem("usersMessages") || "[]")
 
 populaLista()
