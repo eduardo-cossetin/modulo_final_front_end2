@@ -2,12 +2,13 @@
 const userName = localStorage.getItem("userLogIn");
 const inputDescription = document.querySelector("#inputDescription");
 const inputDetail = document.querySelector("#inputDetail");
-let inputDescriptionEdit = document.querySelector("#inputDescriptionEdit");
-let inputDetailEdit = document.querySelector("#inputDetailEdit");
+const inputDescriptionEdit = document.querySelector("#inputDescriptionEdit");
+const inputDetailEdit = document.querySelector("#inputDetailEdit");
 const buttonSaveMessage = document.querySelector("#buttonSaveMessage");
 const buttonEdit = document.querySelector("#buttonEdit");
 const buttonDelete = document.querySelector("#buttonDelete");
 const buttonLogOut = document.querySelector("#buttonLogOut");
+const tbody = document.querySelector("#tbody");
 const table = document.querySelector("#table");
 const tr = document.querySelector("#tr");
 const inputsEditar = document.querySelector("#inputsEditar");
@@ -22,6 +23,8 @@ buttonSaveMessage.addEventListener("click", () => {
     const recado = message(capturarInputs);
     addMessage(recado);
     populaLista();
+    inputDescription.value = "";
+    inputDetail.value = "";
 });
 function getInputsMessage() {
     return {
@@ -54,11 +57,10 @@ function populaLista() {
     const usersMessages = JSON.parse(localStorage.getItem("usersMessages") || "[]");
     limpaTabela();
     usersMessages.forEach((element) => {
-        // const tr: HTMLElement = document.createElement("tr") 
-        table.innerHTML += "<th scope=\"row\">" + element.id +
-            "</th><td>" + element.description +
-            "</td><td>" + element.detail +
-            "</td> <td> <button  onclick=\"editMessage()\" class=\"btn btn-success me-2\">EDITAR</button><button onclick=\"deleteMessage()\"  class=\"btn btn-danger\">APAGAR</button> </td></tr>";
+        const tr = document.createElement("tr");
+        table.innerHTML += `<th scope="row">${element.id}
+        </th><td>${element.description}</td><td>${element.detail}
+        </td> <td> <button  onclick="editMessage(${element.id})" class="btn btn-success me-2">EDITAR</button><button onclick="deleteMessage(${element.id})"  class="btn btn-danger">APAGAR</button> </td></tr>`;
     });
 }
 buttonLogOut.addEventListener("click", () => {
@@ -82,14 +84,13 @@ function editMessage(id) {
     inputDescription.style.display = "none";
     inputDetail.style.display = "none";
     buttonSaveMessage.style.display = "none";
-    // const recado =  addMessageEdit(id) 
     const indexEdit = usersMessages.findIndex((item) => item.id == id);
-    console.log(indexEdit);
     buttonEdit.addEventListener("click", () => {
-        // const recado =  addMessageEdit(id) 
         populaLista();
         excluirRecado();
         adicionarRecadoEdit();
+        inputDescriptionEdit.value = "";
+        inputDetailEdit.value = "";
         inputDescriptionEdit.style.display = "none";
         inputDetailEdit.style.display = "none";
         buttonEdit.style.display = "none";
@@ -102,16 +103,14 @@ function editMessage(id) {
         localStorage.setItem("usersMessages", JSON.stringify(usersMessages));
     }
     function adicionarRecadoEdit() {
-        console.log(usersMessages);
         const inputsEdits = getInputsEdit();
         const recado = {
             userName: userName,
-            id: indexEdit,
+            id: indexEdit + 1,
             description: inputsEdits.description,
             detail: inputsEdits.detail
         };
-        usersMessages.splice(0, 0, recado);
-        console.log(usersMessages);
+        usersMessages.splice(indexEdit, 0, recado);
         localStorage.setItem("usersMessages", JSON.stringify(usersMessages));
         populaLista();
     }

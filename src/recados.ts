@@ -1,21 +1,20 @@
 const userName = localStorage.getItem("userLogIn")
 const inputDescription = document.querySelector("#inputDescription") as HTMLInputElement
 const inputDetail = document.querySelector("#inputDetail") as HTMLInputElement
-let inputDescriptionEdit = document.querySelector("#inputDescriptionEdit") as HTMLInputElement
-let inputDetailEdit = document.querySelector("#inputDetailEdit") as HTMLInputElement
+const inputDescriptionEdit = document.querySelector("#inputDescriptionEdit") as HTMLInputElement
+const inputDetailEdit = document.querySelector("#inputDetailEdit") as HTMLInputElement
 const buttonSaveMessage = document.querySelector("#buttonSaveMessage") as HTMLButtonElement
 const buttonEdit = document.querySelector("#buttonEdit") as HTMLButtonElement
 const buttonDelete = document.querySelector("#buttonDelete") as HTMLButtonElement
 const buttonLogOut = document.querySelector("#buttonLogOut") as HTMLButtonElement
+const tbody = document.querySelector("#tbody") as HTMLTableElement
 const table = document.querySelector("#table") as HTMLTableElement
 const tr = document.querySelector("#tr") as HTMLElement
 const inputsEditar = document.querySelector("#inputsEditar") as HTMLDivElement
 
 const usersMessages: Array<any> = JSON.parse(localStorage.getItem("usersMessages") || "[]")
 
-
 populaLista()
-
 
 if(userName === ""){
     alert("Usuário não logado")
@@ -27,6 +26,8 @@ buttonSaveMessage.addEventListener("click", () => {
     const recado =  message(capturarInputs)   
     addMessage(recado)
     populaLista()
+    inputDescription.value = ""
+    inputDetail.value = ""
 })
 
 function getInputsMessage(){
@@ -62,14 +63,12 @@ function addMessage(recado: any){
 
 function populaLista(){
     const usersMessages: Array<any> = JSON.parse(localStorage.getItem("usersMessages") || "[]")
-
     limpaTabela()
     usersMessages.forEach((element) => {
-        // const tr: HTMLElement = document.createElement("tr") 
-        table.innerHTML+= "<th scope=\"row\">" + element.id +
-        "</th><td>" + element.description + 
-        "</td><td>" + element.detail + 
-        "</td> <td> <button  onclick=\"editMessage()\" class=\"btn btn-success me-2\">EDITAR</button><button onclick=\"deleteMessage()\"  class=\"btn btn-danger\">APAGAR</button> </td></tr>";        
+        const tr: HTMLElement = document.createElement("tr") 
+        table.innerHTML+= `<th scope="row">${element.id}
+        </th><td>${element.description}</td><td>${element.detail}
+        </td> <td> <button  onclick="editMessage(${element.id})" class="btn btn-success me-2">EDITAR</button><button onclick="deleteMessage(${element.id})"  class="btn btn-danger">APAGAR</button> </td></tr>`;        
     })
 }
 
@@ -83,33 +82,30 @@ function limpaTabela(){
     linhas.forEach((linha) => linha.parentNode?.removeChild(linha))    
 }
 
-function deleteMessage(id: any){
+function deleteMessage(id: number){
     const index = usersMessages.findIndex((item) => item.id == id);  
     usersMessages.splice(index, 1); 
     localStorage.setItem("usersMessages", JSON.stringify(usersMessages));
     populaLista();
 }   
 
-function editMessage(id: any){
+function editMessage(id: number){
     inputDescriptionEdit.style.display = "block";
     inputDetailEdit.style.display = "block";
     buttonEdit.style.display = "block";
     inputDescription.style.display = "none" 
     inputDetail.style.display = "none" 
     buttonSaveMessage.style.display = "none" 
-    // const recado =  addMessageEdit(id) 
-    const indexEdit = usersMessages.findIndex((item) => item.id == id);
-    console.log(indexEdit);
-    
+    const indexEdit: number = usersMessages.findIndex((item) => item.id == id);    
     buttonEdit.addEventListener("click", () => {   
-        // const recado =  addMessageEdit(id) 
         populaLista()
         excluirRecado ()
         adicionarRecadoEdit ()
-
+        inputDescriptionEdit.value = ""
+        inputDetailEdit.value = ""
         inputDescriptionEdit.style.display = "none";
-    inputDetailEdit.style.display = "none";
-    buttonEdit.style.display = "none";
+        inputDetailEdit.style.display = "none";
+        buttonEdit.style.display = "none";
         inputDescription.style.display = "block" 
         inputDetail.style.display = "block" 
         buttonSaveMessage.style.display = "block"
@@ -121,21 +117,16 @@ function editMessage(id: any){
     }
 
     function adicionarRecadoEdit(){
-
-        console.log(usersMessages);
-        
         const inputsEdits = getInputsEdit() 
         const recado = {
             userName: userName,
-            id: indexEdit,
+            id: indexEdit + 1,
             description: inputsEdits.description,
             detail: inputsEdits.detail
         } 
-        usersMessages.splice(0, 0, recado)
-        console.log(usersMessages)
+        usersMessages.splice(indexEdit, 0, recado)
         localStorage.setItem("usersMessages", JSON.stringify(usersMessages));
-        populaLista()
-        
+        populaLista()   
     }
 }
 

@@ -4,8 +4,7 @@ const buttonSignIn = document.querySelector("#buttonSignIn") as HTMLButtonElemen
 
 
 buttonSignIn.addEventListener("click", () => {
-    const catchValues = getInputsValues( )
-    
+    const catchValues = getInputsValues()    
     if (sameUser(catchValues)){
         alert("Usuário cadastrado")
         window.location.href = "./recados.html"
@@ -14,6 +13,7 @@ buttonSignIn.addEventListener("click", () => {
     } else {
         alert("Usuário não cadastrado ou senha incorreta!")
     }
+    inputUsernameLogin.value=""
 })
 
 function getInputsValues(){   

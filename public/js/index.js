@@ -13,6 +13,7 @@ buttonSignIn.addEventListener("click", () => {
     else {
         alert("Usuário não cadastrado ou senha incorreta!");
     }
+    inputUsernameLogin.value = "";
 });
 function getInputsValues() {
     return {
