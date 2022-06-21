@@ -11,17 +11,17 @@
 <body>
     <div style="background-image: url(/images/fundo.jpg); background-size: cover; height: 100vh; width: 100vw; position: relative; ">
         <div class="row h-100 w-100">
-            <div class="col-12 d-flex align-items-center flex-column justify-content-center ">
+            <div id="fundoOpacidade" class="col-12 d-flex align-items-center flex-column justify-content-center ">
                 <div class="d-flex flex-column bg-black bg-opacity-50 h-auto pt-5 pb-5 rounded shadow-lg w-50 justify-content-center" >
-                    <p class="h1 text- m-5 align-self-center text-white">MESSAGES</p>
+                    <p class=" titulos h1 text- m-5 align-self-center text-white">MESSAGES</p>
                     <div class="col-12 d-flex flex-column justify-content-center align-items-center gap-2">
                         <label for="inputUsernameLogin"></label>
                         <input class="form-control mb-3 w-75 p-2 rounded bg-white bg-opacity-75" type="text" name="inputUsernameLogin" id="inputUsernameLogin" placeholder="Username">
                         <label for="inputPasswordLogin"></label>
                         <input class="form-control mb-3 w-75 p-2 rounded bg-white bg-opacity-75" type="password" autocomplete="on" name="inputPasswordLogin" id="inputPasswordLogin" placeholder="Password">
-                        <button type="submit" id="buttonSignIn" class="mb-3 btn btn-success w-75 rounded">SIGN IN</button>
+                        <button type="submit" id="buttonSignIn" class="mb-3 titulos btn btn-success w-75 rounded">SIGN IN</button>
                     </div>
-                    <span class="text-white align-self-end p-4">Don't have account? <a href="../js/cadastro.html" class="btn btn-info text-black text-decoration-none">SIGN UP</a> </span> 
+                    <span  class="text-white align-self-end p-4">Don't have account? <a href="../js/cadastro.html" id="buttonSignUp" class="btn btn-info text-black text-decoration-none">SIGN UP</a> </span> 
                     <div id="alertIncorreto" class="alert alert-danger" role="alert" style="display: none">
                         Usuário não cadastrado ou senha incorreta!
                     </div> 

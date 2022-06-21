@@ -1,6 +1,6 @@
 #buttonAbout {
     animation-name: botaoSobre;
-    animation-duration: 5s;
+    animation-duration: 4s;
 }
 
 @keyframes botaoSobre{
@@ -9,5 +9,91 @@
     }
     50% {
         background-color: blue;
+    }
+}
+
+.titulos {
+    animation-name: titulo;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+}
+
+@keyframes titulo{
+    0% {    
+        font-size: 55px;
+    }
+    50% {
+        font-size:60px
+    }
+    75% {
+        font-size: 50px
+    }
+}
+
+#buttonSignUp {
+    animation-name: jumpScreen;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+}
+
+@keyframes jumpScreen {
+    0%{
+        position: relative;
+        right: 500px;
+        bottom: 400px;
+    }
+    25%{
+        position: relative;
+        right: 400px;
+        bottom: 300px;
+    }
+    50% {
+        position: relative;
+        right: 300px;
+        bottom: 200px;
+    }
+    75% {
+        position: relative;
+        right: 200px;
+        bottom: 10px;   
+    }
+    100%{
+        position: relative;
+        right: 0px;
+        bottom: 0px;
+    }
+}
+
+#buttonSignIn {
+    animation-name: jumpScreenIn;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+}
+
+@keyframes jumpScreenIn {
+    0%{
+        position: relative;
+        left: 500px;
+        /* top: 400px; */
+    }
+    25%{
+        left: relative;
+        left: 400px;
+        /* top: 300px; */
+    }
+    50% {
+        position: relative;
+        left: 300px;
+        /* top: 200px; */
+    }
+    75% {
+        position: relative;
+        left: 200px;
+        top: 10px;   
+    }
+    100%{
+        position: relative;
+        left: 0px;
+        top: 0px;
     }
 }
