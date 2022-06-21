@@ -15,7 +15,7 @@ const usersMessages = JSON.parse(localStorage.getItem("usersMessages") || "[]");
 let recadoUsuario = usersMessages.filter((element) => element.username == userName);
 populaLista();
 if (userName === "") {
-    alert("Usuário não logado");
+    alert("Usuário não logado!");
     window.location.href = "./index.html";
 }
 buttonSaveMessage.addEventListener("click", () => {

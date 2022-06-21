@@ -17,7 +17,7 @@ let recadoUsuario = usersMessages.filter((element) => element.username == userNa
 populaLista()
 
 if(userName === ""){
-    alert("Usuário não logado")
+    alert("Usuário não logado!")
     window.location.href = "./index.html"
 } 
 
@@ -25,12 +25,12 @@ buttonSaveMessage.addEventListener("click", () => {
     if(inputDescription.value === "" ||  inputDetail.value === ""){
         alert("É necessário preencher os campos!")
     } else {
-        const capturarInputs = getInputsMessage()
-        const recado =  message(capturarInputs)   
-        addMessage(recado)
-        populaLista()
-        inputDescription.value = ""
-        inputDetail.value = ""
+        const capturarInputs = getInputsMessage();
+        const recado =  message(capturarInputs);
+        addMessage(recado);
+        populaLista();
+        inputDescription.value = "";
+        inputDetail.value = "";
     }
 })
 
