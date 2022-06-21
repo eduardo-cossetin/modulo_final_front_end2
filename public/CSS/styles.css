@@ -1,0 +1,13 @@
+#buttonAbout {
+    animation-name: botaoSobre;
+    animation-duration: 5s;
+}
+
+@keyframes botaoSobre{
+    0% {
+        background-color: white;
+    }
+    50% {
+        background-color: blue;
+    }
+}

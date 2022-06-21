@@ -84,7 +84,7 @@ function limpaTabela(){
 }
 
 function deleteMessage(id: number){
-    const index = usersMessages.findIndex((item) => item.id == id);  
+    const index: number = usersMessages.findIndex((item) => item.id == id);  
     usersMessages.splice(index, 1); 
     localStorage.setItem("usersMessages", JSON.stringify(usersMessages));
     populaLista();
