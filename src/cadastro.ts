@@ -8,9 +8,11 @@ const users: Array<any> = JSON.parse(localStorage.getItem("users") || "[]")
 buttonSignUp.addEventListener("click", () => {
     const user = getUserInputs()
 
-    if(inputPassword.value !== inputRepeatPassword.value){
+    if(inputUsername.value === "" || inputPassword.value === "" || inputRepeatPassword.value ===""){
+        alert("Você precisa preencher os campos")
+    } else if ( inputPassword.value !== inputRepeatPassword.value){
         alert("As senhas não são iguais")
-    } else if (userExist(user)){
+    }  else if (userExist(user)){
         alert("Usuário já existe!")
     } else {    
         addUserLocalStorage(user)
