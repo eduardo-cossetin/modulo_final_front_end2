@@ -12,6 +12,8 @@ const tr = document.querySelector("#tr") as HTMLElement
 const inputsEditar = document.querySelector("#inputsEditar") as HTMLDivElement
 const usersMessages: Array<any> = JSON.parse(localStorage.getItem("usersMessages") || "[]")
 
+let recadoUsuario = usersMessages.filter((element) => element.username == userName)
+
 populaLista()
 
 if(userName === ""){
@@ -50,7 +52,7 @@ function message (capturarInputs: any){
 
 function nextId (){    
     let max = 0;
-    usersMessages.forEach((item) => {
+    recadoUsuario.forEach((item) => {
     if (item.id > max) {
       max = item.id;
     }
@@ -60,12 +62,13 @@ function nextId (){
 
 function addMessage(recado: any){
     usersMessages.push(recado)
+    recadoUsuario.push(recado)
     localStorage.setItem("usersMessages", JSON.stringify(usersMessages))
 }
 
 function populaLista(){
     limpaTabela()
-    usersMessages.forEach((element) => {
+    recadoUsuario.forEach((element) => {
         const tr: HTMLElement = document.createElement("tr") 
         table.innerHTML+= `<th scope="row">${element.id}
         </th><td>${element.description}</td><td>${element.detail}
@@ -84,15 +87,16 @@ function limpaTabela(){
 }
 
 function deleteMessage(id: number){
-    const index: number = usersMessages.findIndex((item) => item.id == id);  
+    const index: number = usersMessages.findIndex((item) => item.id == id && item.username == userName);  
     usersMessages.splice(index, 1); 
     localStorage.setItem("usersMessages", JSON.stringify(usersMessages));
+    recadoUsuario = usersMessages.filter((element) => element.username == userName)
     populaLista();
 }   
 
 function editMessage(id: number){
     showHideInputsMessages ()    
-    const indexEdit: number = usersMessages.findIndex((item) => item.id == id);    
+    const indexEdit: number = usersMessages.findIndex((item) => item.id == id && item.username == userName);    
     buttonEdit.addEventListener("click", () => {   
         adicionarRecadoEdit ()        
         showHideInputsEdit ()        

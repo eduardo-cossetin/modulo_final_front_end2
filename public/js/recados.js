@@ -12,6 +12,7 @@ const table = document.querySelector("#table");
 const tr = document.querySelector("#tr");
 const inputsEditar = document.querySelector("#inputsEditar");
 const usersMessages = JSON.parse(localStorage.getItem("usersMessages") || "[]");
+let recadoUsuario = usersMessages.filter((element) => element.username == userName);
 populaLista();
 if (userName === "") {
     alert("Usuário não logado");
@@ -46,7 +47,7 @@ function message(capturarInputs) {
 }
 function nextId() {
     let max = 0;
-    usersMessages.forEach((item) => {
+    recadoUsuario.forEach((item) => {
         if (item.id > max) {
             max = item.id;
         }
@@ -55,11 +56,12 @@ function nextId() {
 }
 function addMessage(recado) {
     usersMessages.push(recado);
+    recadoUsuario.push(recado);
     localStorage.setItem("usersMessages", JSON.stringify(usersMessages));
 }
 function populaLista() {
     limpaTabela();
-    usersMessages.forEach((element) => {
+    recadoUsuario.forEach((element) => {
         const tr = document.createElement("tr");
         table.innerHTML += `<th scope="row">${element.id}
         </th><td>${element.description}</td><td>${element.detail}
@@ -75,14 +77,15 @@ function limpaTabela() {
     linhas.forEach((linha) => linha.parentNode?.removeChild(linha));
 }
 function deleteMessage(id) {
-    const index = usersMessages.findIndex((item) => item.id == id);
+    const index = usersMessages.findIndex((item) => item.id == id && item.username == userName);
     usersMessages.splice(index, 1);
     localStorage.setItem("usersMessages", JSON.stringify(usersMessages));
+    recadoUsuario = usersMessages.filter((element) => element.username == userName);
     populaLista();
 }
 function editMessage(id) {
     showHideInputsMessages();
-    const indexEdit = usersMessages.findIndex((item) => item.id == id);
+    const indexEdit = usersMessages.findIndex((item) => item.id == id && item.username == userName);
     buttonEdit.addEventListener("click", () => {
         adicionarRecadoEdit();
         showHideInputsEdit();
