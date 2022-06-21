@@ -12,7 +12,6 @@ const tr = document.querySelector("#tr") as HTMLElement
 const inputsEditar = document.querySelector("#inputsEditar") as HTMLDivElement
 
 const usersMessages: Array<any> = JSON.parse(localStorage.getItem("usersMessages") || "[]")
-const logadoMessage =  usersMessages.filter((element) => element.username === userName)
 populaLista()
 
 if(userName === ""){
@@ -103,8 +102,7 @@ function editMessage(id: number){
         populaLista()
         excluirRecado ()
         adicionarRecadoEdit ()
-        inputDescriptionEdit.value = ""
-        inputDetailEdit.value = ""
+        
         inputDescriptionEdit.style.display = "none";
         inputDetailEdit.style.display = "none";
         buttonEdit.style.display = "none";
