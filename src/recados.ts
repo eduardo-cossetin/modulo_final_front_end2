@@ -12,6 +12,8 @@ const tr = document.querySelector("#tr") as HTMLElement
 const inputsEditar = document.querySelector("#inputsEditar") as HTMLDivElement
 
 const usersMessages: Array<any> = JSON.parse(localStorage.getItem("usersMessages") || "[]")
+const logadoMessages = usersMessages.filter((element) => element.username === userName)
+
 populaLista()
 
 if(userName === ""){
@@ -91,40 +93,17 @@ function deleteMessage(id: number){
 }   
 
 function editMessage(id: number){
-    inputDescriptionEdit.style.display = "block";
-    inputDetailEdit.style.display = "block";
-    buttonEdit.style.display = "block";
-    inputDescription.style.display = "none" 
-    inputDetail.style.display = "none" 
-    buttonSaveMessage.style.display = "none" 
+    showHideInputsMessages ()    
     const indexEdit: number = usersMessages.findIndex((item) => item.id == id);    
     buttonEdit.addEventListener("click", () => {   
-        populaLista()
-        excluirRecado ()
-        adicionarRecadoEdit ()
-        
-        inputDescriptionEdit.style.display = "none";
-        inputDetailEdit.style.display = "none";
-        buttonEdit.style.display = "none";
-        inputDescription.style.display = "block" 
-        inputDetail.style.display = "block" 
-        buttonSaveMessage.style.display = "block"
+        adicionarRecadoEdit ()        
+        showHideInputsEdit ()        
     })      
-
-    function excluirRecado(){    
-        usersMessages.splice(indexEdit, 1)      
-        localStorage.setItem("usersMessages", JSON.stringify(usersMessages));
-    }
 
     function adicionarRecadoEdit(){
         const inputsEdits = getInputsEdit() 
-        const recado = {
-            userName: userName,
-            id: indexEdit + 1,
-            description: inputsEdits.description,
-            detail: inputsEdits.detail
-        } 
-        usersMessages.splice(indexEdit, 0, recado)
+        usersMessages[indexEdit].description = inputsEdits.description
+        usersMessages[indexEdit].detail = inputsEdits.detail
         localStorage.setItem("usersMessages", JSON.stringify(usersMessages));
         populaLista()   
     }
@@ -135,4 +114,22 @@ function getInputsEdit(){
         description: inputDescriptionEdit.value,
         detail: inputDetailEdit.value
     }
+}
+
+function showHideInputsMessages (){
+    inputDescriptionEdit.style.display = "block";
+    inputDetailEdit.style.display = "block";
+    buttonEdit.style.display = "block";
+    inputDescription.style.display = "none" 
+    inputDetail.style.display = "none" 
+    buttonSaveMessage.style.display = "none" 
+}
+
+function showHideInputsEdit (){
+    inputDescriptionEdit.style.display = "none";
+    inputDetailEdit.style.display = "none";
+    buttonEdit.style.display = "none";
+    inputDescription.style.display = "block" 
+    inputDetail.style.display = "block" 
+    buttonSaveMessage.style.display = "block"
 }

@@ -12,6 +12,7 @@ const table = document.querySelector("#table");
 const tr = document.querySelector("#tr");
 const inputsEditar = document.querySelector("#inputsEditar");
 const usersMessages = JSON.parse(localStorage.getItem("usersMessages") || "[]");
+const logadoMessages = usersMessages.filter((element) => element.username === userName);
 populaLista();
 if (userName === "") {
     alert("Usuário não logado");
@@ -81,37 +82,16 @@ function deleteMessage(id) {
     populaLista();
 }
 function editMessage(id) {
-    inputDescriptionEdit.style.display = "block";
-    inputDetailEdit.style.display = "block";
-    buttonEdit.style.display = "block";
-    inputDescription.style.display = "none";
-    inputDetail.style.display = "none";
-    buttonSaveMessage.style.display = "none";
+    showHideInputsMessages();
     const indexEdit = usersMessages.findIndex((item) => item.id == id);
     buttonEdit.addEventListener("click", () => {
-        populaLista();
-        excluirRecado();
         adicionarRecadoEdit();
-        inputDescriptionEdit.style.display = "none";
-        inputDetailEdit.style.display = "none";
-        buttonEdit.style.display = "none";
-        inputDescription.style.display = "block";
-        inputDetail.style.display = "block";
-        buttonSaveMessage.style.display = "block";
+        showHideInputsEdit();
     });
-    function excluirRecado() {
-        usersMessages.splice(indexEdit, 1);
-        localStorage.setItem("usersMessages", JSON.stringify(usersMessages));
-    }
     function adicionarRecadoEdit() {
         const inputsEdits = getInputsEdit();
-        const recado = {
-            userName: userName,
-            id: indexEdit + 1,
-            description: inputsEdits.description,
-            detail: inputsEdits.detail
-        };
-        usersMessages.splice(indexEdit, 0, recado);
+        usersMessages[indexEdit].description = inputsEdits.description;
+        usersMessages[indexEdit].detail = inputsEdits.detail;
         localStorage.setItem("usersMessages", JSON.stringify(usersMessages));
         populaLista();
     }
@@ -121,4 +101,20 @@ function getInputsEdit() {
         description: inputDescriptionEdit.value,
         detail: inputDetailEdit.value
     };
+}
+function showHideInputsMessages() {
+    inputDescriptionEdit.style.display = "block";
+    inputDetailEdit.style.display = "block";
+    buttonEdit.style.display = "block";
+    inputDescription.style.display = "none";
+    inputDetail.style.display = "none";
+    buttonSaveMessage.style.display = "none";
+}
+function showHideInputsEdit() {
+    inputDescriptionEdit.style.display = "none";
+    inputDetailEdit.style.display = "none";
+    buttonEdit.style.display = "none";
+    inputDescription.style.display = "block";
+    inputDetail.style.display = "block";
+    buttonSaveMessage.style.display = "block";
 }
