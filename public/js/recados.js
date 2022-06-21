@@ -12,7 +12,6 @@ const table = document.querySelector("#table");
 const tr = document.querySelector("#tr");
 const inputsEditar = document.querySelector("#inputsEditar");
 const usersMessages = JSON.parse(localStorage.getItem("usersMessages") || "[]");
-const logadoMessages = usersMessages.filter((element) => element.username === userName);
 populaLista();
 if (userName === "") {
     alert("Usuário não logado");

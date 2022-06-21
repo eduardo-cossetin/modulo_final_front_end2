@@ -10,9 +10,7 @@ const buttonLogOut = document.querySelector("#buttonLogOut") as HTMLButtonElemen
 const table = document.querySelector("#table") as HTMLTableElement
 const tr = document.querySelector("#tr") as HTMLElement
 const inputsEditar = document.querySelector("#inputsEditar") as HTMLDivElement
-
 const usersMessages: Array<any> = JSON.parse(localStorage.getItem("usersMessages") || "[]")
-const logadoMessages = usersMessages.filter((element) => element.username === userName)
 
 populaLista()
 
