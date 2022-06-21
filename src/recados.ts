@@ -51,7 +51,7 @@ function message (capturarInputs: any){
 
 function nextId (){    
     let max = 0;
-    logadoMessage.forEach((item) => {
+    usersMessages.forEach((item) => {
     if (item.id > max) {
       max = item.id;
     }
@@ -60,13 +60,13 @@ function nextId (){
 }
 
 function addMessage(recado: any){
-    logadoMessage.push(recado)
+    usersMessages.push(recado)
     localStorage.setItem("usersMessages", JSON.stringify(usersMessages))
 }
 
 function populaLista(){
     limpaTabela()
-    logadoMessage.forEach((element) => {
+    usersMessages.forEach((element) => {
         const tr: HTMLElement = document.createElement("tr") 
         table.innerHTML+= `<th scope="row">${element.id}
         </th><td>${element.description}</td><td>${element.detail}
@@ -85,9 +85,9 @@ function limpaTabela(){
 }
 
 function deleteMessage(id: number){
-    const index = logadoMessage.findIndex((item) => item.id == id);  
-    logadoMessage.splice(index, 1); 
-    localStorage.setItem("usersMessages", JSON.stringify(logadoMessage));
+    const index = usersMessages.findIndex((item) => item.id == id);  
+    usersMessages.splice(index, 1); 
+    localStorage.setItem("usersMessages", JSON.stringify(usersMessages));
     populaLista();
 }   
 
@@ -98,7 +98,7 @@ function editMessage(id: number){
     inputDescription.style.display = "none" 
     inputDetail.style.display = "none" 
     buttonSaveMessage.style.display = "none" 
-    const indexEdit: number = logadoMessage.findIndex((item) => item.id == id);    
+    const indexEdit: number = usersMessages.findIndex((item) => item.id == id);    
     buttonEdit.addEventListener("click", () => {   
         populaLista()
         excluirRecado ()
@@ -114,8 +114,8 @@ function editMessage(id: number){
     })      
 
     function excluirRecado(){    
-        logadoMessage.splice(indexEdit, 1)      
-        localStorage.setItem("usersMessages", JSON.stringify(logadoMessage));
+        usersMessages.splice(indexEdit, 1)      
+        localStorage.setItem("usersMessages", JSON.stringify(usersMessages));
     }
 
     function adicionarRecadoEdit(){
@@ -126,8 +126,8 @@ function editMessage(id: number){
             description: inputsEdits.description,
             detail: inputsEdits.detail
         } 
-        logadoMessage.splice(indexEdit, 0, recado)
-        localStorage.setItem("usersMessages", JSON.stringify(logadoMessage));
+        usersMessages.splice(indexEdit, 0, recado)
+        localStorage.setItem("usersMessages", JSON.stringify(usersMessages));
         populaLista()   
     }
 }
